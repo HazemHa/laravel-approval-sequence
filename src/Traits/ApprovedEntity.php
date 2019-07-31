@@ -17,9 +17,6 @@ trait ApprovedEntity
 
     public static function Pending()
     {
-
-       dd( \Approval\Models\Entity::all());
-        // (new static)->approvedRules
         $pending =  \ApprovalSequence\Models\Entity::Where('entity_type', self::class)->get();
         $PendingEntity =  $pending->map(function ($item) {
             if($item->entity && $item->entity->isPending()){
@@ -42,7 +39,6 @@ trait ApprovedEntity
     }
     public  function isPending()
     {
-        // (new static)->approvedRules
         return $this->pendingItem($this->approvedByRole());
     }
 
@@ -87,25 +83,4 @@ trait ApprovedEntity
         return $data;
     }
 
-
-    /**
-     * Boolean to mark whether or not the approval model should be saved
-     * forcefully.
-     *
-     * @var bool
-     */
-    private $forcedApprovalUpdate = false;
-    /**
-     * Return Modification relations via moprhMany.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function modifications()
-    {
-        return $this->morphMany(config('approval.models.modification', \Approval\Models\Modification::class), 'modifiable');
-    }
-
-    /*
-        $modificationModel = config('approval.models.modification', \Approval\Models\Modification::class);
-*/
 }
