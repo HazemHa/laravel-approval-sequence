@@ -58,6 +58,36 @@ class Admin extends Model
 }
 ```
 
+#### properties if you need to override them, you can use constructor
+## Approver
+```
+ public $unAuthorizedMessage = "you must follow the sequence of approval process";
+    public $unApprovedMessage = "it's not approved yet";
+
+    public $approvedMessage = " you've approved this before";
+
+    public $keyOfRole = "role_id";
+
+    public $sortBy = "role_id";
+```
+
+## ApprovedEntity
+
+```
+ public $approvedRules = [1];
+```
+
+### Example
+#### set them in the sequence that means first one need to approve who have role_id = 1 then 2 then 3 ...blah blah
+
+```
+
+    public function __construct()
+    {
+        parent::__construct();
+     $this->approvedRules = [1,2,3];
+    }
+```
 
 # Usage
 Any model that contains the Required Approval trait may have multiple pending Entities, to access these modifications you can call the Entities method on the approval model:
