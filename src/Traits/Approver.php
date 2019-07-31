@@ -33,8 +33,7 @@ trait Approver
         $data =  $data->map(function ($item) {
             return $item->entity;
         });
-        dd($data);
-        return $data->get();
+        return $data;
     }
 
 
