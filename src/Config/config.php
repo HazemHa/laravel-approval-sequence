@@ -13,7 +13,7 @@ return [
     */
 
     'models' => [
-      'entity'     => \Approval\Models\Entity::class,
+      'entity'     => \ApprovalSequence\Models\Entity::class,
     ],
 
 ];
